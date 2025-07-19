@@ -15,5 +15,11 @@ commit_message="Versão $versao: Atualização automatizada"
 # Realiza o commit com a mensagem gerada
 git commit -m "$commit_message"
 
+# Cria uma tag com a versão
+git tag -a "v$versao" -m "Versão $versao"
+
+# Envia as alterações para o repositório remoto
+git push origin main --tags
+
 # Exibe uma mensagem de sucesso
 echo "Commit realizado com a versão $versao."
