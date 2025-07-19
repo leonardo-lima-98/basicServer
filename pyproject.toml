@@ -29,9 +29,7 @@ run = 'fastapi dev src/app.py'
 pre_test = 'task lint'
 test = 'pytest -s -x --cov=src -vv'
 post_test = 'coverage html'
-pre_commit = 'num_commits=$(git log --pretty=format:"%h" | wc -l) ; versao=$((num_commits + 2))'
-commit = 'git add . ; commit_message="Versão $versao: Atualização automatizada"'
-post_commit = ' git commit -m "$commit_message" ; echo "Commit realizado com a versão $versao."'
+autocommit = '. ./scripts/autocommit.sh'
 
 [tool.pytest.ini_options]
 pythonpath = '.'
