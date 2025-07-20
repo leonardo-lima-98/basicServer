@@ -1,0 +1,58 @@
+body {
+    background: #f0f4f8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+}
+.container {
+    background: #fff;
+    margin: 20px;
+    width: 200px;
+    height: 50px;
+    padding: 32px 48px;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+.developer {
+    color: #9327ae;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+.operation {
+    color: #27ae60;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}        
+.manager {
+    color: #ae8a27;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}        
+.owner {
+    color: #2771ae;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+.success {
+    color: #27ae60;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+.failed {
+    color: #ae2727;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+.iframe {
+    margin: 5px;
+}

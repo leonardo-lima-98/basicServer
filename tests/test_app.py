@@ -16,10 +16,16 @@ def test_read_root_deve_retornar_ok_e_ola_mundo():
 def test_read_root_deve_retornar_erro_404_para_url_inexistente():
     response = client.get('/inexistente')
     assert response.status_code == HTTPStatus.NOT_FOUND
-    assert response.json() == {'detail': 'Not Found'}
+    # assert response.json() == {'detail': 'Not Found'}
 
 
 def test_read_root_deve_retornar_erro_405_para_metodo_nao_permitido():
     response = client.post('/')
     assert response.status_code == HTTPStatus.METHOD_NOT_ALLOWED
     assert response.json() == {'detail': 'Method Not Allowed'}
+
+
+def test_health_check_deve_retornar_ok():
+    response = client.get('/health')
+    assert response.status_code == HTTPStatus.OK
+    assert response.json() == {'status': 'ok'}

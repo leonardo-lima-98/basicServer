@@ -28,7 +28,7 @@ format = ' ruff format .'
 run = 'fastapi dev src/app.py'
 pre_test = 'task lint'
 test = 'pytest -s -x --cov=src -vv'
-post_test = 'coverage html'
+post_test = 'coverage html ; python -m http.server 8090 --directory htmlcov/'
 autocommit = '. ./scripts/autocommit.sh'
 
 [tool.pytest.ini_options]
@@ -36,7 +36,7 @@ pythonpath = '.'
 addopts = '-p no:warnings'
 
 [tool.ruff]
-line-length = 119
+line-length = 82
 extend-exclude = ['migrations', 'pyproject.toml']
 
 [tool.ruff.lint]
