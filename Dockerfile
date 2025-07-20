@@ -1,20 +1,13 @@
-# Etapa 1: Imagem base
 FROM python:3.12-slim
+ENV POETRY_VIRTUALENVS_CREATE=false
 
-# Etapa 2: Diretório de trabalho dentro do container
-WORKDIR /app
-
-# Etapa 3: Copia os arquivos de dependência
-COPY requirements.txt .
-
-# Etapa 4: Instala as dependências
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Etapa 5: Copia o restante dos arquivos do projeto
+WORKDIR app/
 COPY . .
 
-# Etapa 6: Expõe a porta usada pelo Uvicorn
-EXPOSE 8000
+RUN pip install poetry
 
-# Etapa 7: Comando para iniciar o app
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+RUN poetry config installer.max-workers 10
+RUN poetry install --no-interaction --no-ansi --without dev
+
+EXPOSE 8000
+CMD poetry run uvicorn --host 0.0.0.0 fast_zero.app:app

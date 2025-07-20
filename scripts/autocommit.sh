@@ -16,10 +16,14 @@ commit_message="Versão $versao: Atualização automatizada"
 git commit -m "$commit_message"
 
 # Cria uma tag com a versão
-git tag -a "v$versao" -m "Versão $versao"
+git tag -a "v0.0$versao" -m "Versão $versao"
 
 # Envia as alterações para o repositório remoto
 git push origin main --tags --force
 
 # Exibe uma mensagem de sucesso
 echo "Commit realizado com a versão $versao."
+
+git_hash=$(git rev-parse --short HEAD)
+
+docker build -t minha-app:$git_hash-v0.0$versao .
