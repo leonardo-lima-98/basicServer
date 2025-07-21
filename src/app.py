@@ -1,4 +1,5 @@
 from http import HTTPStatus, client
+import random
 from uuid import uuid4
 
 from fastapi import FastAPI, Query, Request
@@ -163,3 +164,58 @@ def show_glances(
             },
             status_code=status_code.value,
         )
+
+
+numeros_ja_exibidos = []
+
+def gera_numero_random():
+    num = random.randint(1 , 90)
+    return num
+
+@app.get('/bingo')
+def bingo_funtion_to_play_with_friends(request: Request, status_code=HTTPStatus.OK):
+    return templates.TemplateResponse(
+    'bingo.html',
+    {
+        'request': request,
+        'title': "Bingo",
+        'message': numeros_ja_exibidos,
+        'class': 'success',
+        'status_code': gera_numero_random(),
+    },
+    status_code=status_code.value,
+    )
+    
+
+@app.get('/novo_numero')
+def novo_numero(request: Request, status_code=HTTPStatus.OK):
+    num = gera_numero_random()
+    [num != x for x in numeros_ja_exibidos]
+    numeros_ja_exibidos.append(num)
+    return templates.TemplateResponse(
+    'bingo.html',
+    {
+        'request': request,
+        'title': "Bingo",
+        'message': numeros_ja_exibidos,
+        'class': 'success',
+        'status_code': num,
+    },
+    status_code=status_code.value,
+    )
+
+
+@app.get('/reset_game')
+def reset_game(request: Request, status_code=HTTPStatus.OK):
+    numeros_ja_exibidos.clear()
+    return templates.TemplateResponse(
+    'bingo.html',
+    {
+        'request': request,
+        'title': "Bingo",
+        'message': numeros_ja_exibidos,
+        'class': 'success',
+        'status_code': 0,
+    },
+    status_code=status_code.value,
+    )
