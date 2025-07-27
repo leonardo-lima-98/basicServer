@@ -11,9 +11,9 @@
 
         <p>{{ message }}</p>
         
-        <a href="/"><button>Home</button></a>
-        <a href="/novo_numero"><button>Novo Numero</button></a>
-        <a href="/reset_game"><button>Reset Game</button></a>
+        <a href="{{ url_for('read_root') }}"><button>Home</button></a>
+        <a href="{{ url_for('novo_numero') }}"><button>Novo Numero</button></a>
+        <a href="{{ url_for('reset_game') }}"><button>Reset Game</button></a>
     </div>
 </body>
 </html>
